@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# INOVA · site (preview)
 
-## Getting Started
+Landing page da INOVA em Next.js 16, Tailwind CSS 4, Motion e ícones Phosphor. Página única, estática,
+tema escuro.
 
-First, run the development server:
+O sistema visual está em [`DESIGN.md`](DESIGN.md): canvas quase preto, um único amarelo de sinalização,
+Geist em peso 700, superfícies chapadas. Antes de mudar cor, fonte ou componente, leia o "Não fazer" de lá.
+
+## Rodar
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev                 # desenvolvimento: http://localhost:3000
+npm run build && npm start  # produção
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Onde mexer
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| O quê | Arquivo |
+|---|---|
+| Nome, e-mail, WhatsApp, links do menu | `src/lib/site.ts` |
+| Cores e componentes base (botões, link, skip link) | `src/app/globals.css` |
+| Hero e a pista em canvas (com botão de pausa) | `src/components/hero/` |
+| Normas atendidas | `src/components/norms.tsx` |
+| Serviços e as mini-animações (FWD, perfil, IRI, laudo, ponte) | `src/components/services/` |
+| Etapas do pipeline e a tabela de exemplo | `src/components/pipeline/` |
+| Implantação × sob demanda | `src/components/delivery-models.tsx` |
+| Confidencialidade | `src/components/confidentiality/` |
+| Plataforma e o gráfico de IRI | `src/components/platform/` |
+| Faixa de contato e formulário | `src/components/contact/` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Os números das animações, da tabela e do gráfico saem de um modelo sintético em `src/lib/road.ts`.
+Não são dados de cliente, e o site avisa isso onde aparecem.
 
-## Learn More
+## WhatsApp
 
-To learn more about Next.js, take a look at the following resources:
+Os botões "Solicitar proposta" (menu, hero, faixa de contato), os links de WhatsApp e o envio do
+formulário abrem uma conversa com o número de `site.whatsapp`, pelo link oficial `wa.me` com a mensagem
+já digitada. Não precisa de API nem de chave. O formulário valida nome e e-mail na própria linha do campo
+e monta a mensagem com nome, empresa, e-mail, serviços marcados e o texto.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O número vai só com dígitos e exatamente como o WhatsApp o mostra. No DDD 61 a conta aparece sem o nono
+dígito (`556181814507`); se algum dia o link não abrir a conversa certa, teste com o 9 (`5561981814507`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Antes de publicar
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Conferir a lista de normas em `src/components/norms.tsx`.
+- [ ] Revisar as promessas do texto (sigilo em contrato, implantação na rede do cliente, sem nuvem) contra o que a INOVA oferece de fato.
+- [ ] Fotos reais de campo (veículo do perfilômetro, FWD, inspeção de ponte): é o que mais falta para o site parecer de uma empresa de verdade.
+- [ ] Trocar a marca provisória (`src/components/logo.tsx` e `src/app/icon.svg`) pelo logo definitivo.
